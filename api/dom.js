@@ -5851,6 +5851,10 @@ global.meta = {
                                 date               = global.edition.api.dom;
                                 dateCell.innerHTML = conversion(date);
                                 dateList.push([date, row[b].innerHTML]);
+                            } else if (lib === "external.js") {
+                                date               = global.edition.external;
+                                dateCell.innerHTML = conversion(date);
+                                dateList.push([date, row[b].innerHTML]);
                             } else if (lib === "jspretty.js") {
                                 date               = global.edition.jspretty;
                                 dateCell.innerHTML = conversion(date);

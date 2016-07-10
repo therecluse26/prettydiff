@@ -261,6 +261,10 @@ var prettydiff = function prettydiff_(api) {
                     // endcomma - if a trailing comma should be injected at the end of arrays and
                     // object literals in JavaScript
                     endcomma       : (api.endcomma === true || api.endcomma === "true"),
+                    // externalParser - a Node.js only option that allows third party apps to run against template tokens as child processes
+                    externalParser : (typeof api.externalParser !== "string")
+                        ? ""
+                        : api.externalParser,
                     // force_attribute - forces indentation of all markup attriubtes
                     force_attribute: (api.force_attribute === true || api.force_attribute === "true"),
                     // force_indent - should markup beautification always force indentation even if
@@ -336,7 +340,7 @@ var prettydiff = function prettydiff_(api) {
                     // an array of [data, meta] instead of a single string
                     nodeasync      : (api.nodeasync === true || api.nodeasync === "true"),
                     // nodeerror - nodeonly rule about whether parse errors should be logged to the
-                    // console
+                    // command line
                     nodeerror      : (api.nodeerror === true || api.nodeerror === "true"),
                     // noleadzero - in CSS removes and prevents a run of 0s from appearing
                     // immediately before a value's decimal.
@@ -659,6 +663,8 @@ var prettydiff = function prettydiff_(api) {
                                 if (build[c][1] === "sidebyside" || build[c][1] === "inline") {
                                     options.diffview = build[c][1];
                                 }
+                            } else if (build[c][0] === "externalParser") {
+                                options.externalParser = build[c][1];
                             } else if (build[c][0] === "formatArray" || build[c][0] === "formatObject") {
                                 if (build[c][1] === "default" || build[c][1] === "indent" || build[c][1] === "inline") {
                                     options[build[c][0]] = build[c][1];
@@ -956,6 +962,7 @@ global.edition        = {
     csvpretty    : 160307, //csvpretty lib
     diffview     : 160629, //diffview lib
     documentation: 160629, //documentation.xhtml
+    external     : 160707, //external lib
     jspretty     : 160629, //jspretty lib
     language     : 160422, //language lib
     latest       : 0,
@@ -968,7 +975,7 @@ global.edition        = {
 };
 global.edition.latest = (function edition_latest() {
     "use strict";
-    return Math.max(global.edition.css, global.edition.csspretty, global.edition.csvpretty, global.edition.diffview, global.edition.documentation, global.edition.jspretty, global.edition.language, global.edition.markuppretty, global.edition.prettydiff, global.edition.webtool, global.edition.api.dom, global.edition.api.nodeLocal, global.edition.api.wsh);
+    return Math.max(global.edition.css, global.edition.csspretty, global.edition.csvpretty, global.edition.diffview, global.edition.documentation, global.edition.external, global.edition.jspretty, global.edition.language, global.edition.markuppretty, global.edition.prettydiff, global.edition.webtool, global.edition.api.dom, global.edition.api.nodeLocal, global.edition.api.wsh);
 }());
 if (typeof exports === "object" || typeof exports === "function") {
     //commonjs and nodejs support

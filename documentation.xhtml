@@ -726,6 +726,22 @@
                                         Trailing Commas</li>
                                 </ul>
                             </li>
+                            <li id="externalParser">
+                                <h4>externalParser
+                                    <strong>(node-local.js only)</strong>
+                                </h4>
+                                <ul>
+                                    <li>
+                                        Allow tokens of type <em>template</em> and <em>template_start</em> to leak to a third party parser asynchronously. Requires a command line instruction to run as a Node.js child process.  <strong>prettydiffinput</strong> must be present in this string as it will be replaced with the code to be processed.
+                                    </li>
+                                    <li>
+                                        <h5>Type</h5>
+                                        string</li>
+                                    <li>
+                                        <h5>Default</h5>
+                                        (empty string)</li>
+                                </ul>
+                            </li>
                             <li id="endquietly">
                                 <h4>endquietly
                                     <strong>(node-local.js only)</strong>
@@ -2363,12 +2379,12 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="diffview.css">diffview.css</a>
+                                        <a href="css">css</a>
                                     </td>
                                     <td>
                                         <a href="http://prettydiff.com/">Austin Cheney</a>
                                     </td>
-                                    <td>The CSS that powers everything to do with the form, diff output, and this
+                                    <td>The collection of CSS that powers everything to do with the form, diff output, and this
                                         documentation.</td>
                                     <td class="date"></td>
                                 </tr>
@@ -2408,6 +2424,16 @@
                                     </td>
                                     <td>A supplemental JavaScript file providing DOM access and interaction with the
                                         web tool.</td>
+                                    <td class="date"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="lib/external.js">external.js</a>
+                                    </td>
+                                    <td>
+                                        <a href="http://prettydiff.com/">Austin Cheney</a>
+                                    </td>
+                                    <td>A library to allow the various included parser libraries to access third party formatters for template tokens.</td>
                                     <td class="date"></td>
                                 </tr>
                                 <tr>

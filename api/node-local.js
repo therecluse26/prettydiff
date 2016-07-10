@@ -49,6 +49,7 @@ Examples:
             global.csspretty    = require(localPath + "lib/csspretty.js").api;
             global.csvpretty    = require(localPath + "lib/csvpretty.js").api;
             global.diffview     = require(localPath + "lib/diffview.js").api;
+            global.external     = require(localPath + "lib/external.js").api;
             global.finalFile    = require(localPath + "lib/finalFile.js").api;
             global.jspretty     = require(localPath + "lib/jspretty.js").api;
             global.markuppretty = require(localPath + "lib/markuppretty.js").api;
@@ -83,6 +84,7 @@ Examples:
             elseline       : false,
             endcomma       : false,
             endquietly     : "",
+            externalParser : "",
             force_attribute: false,
             force_indent   : false,
             formatArray    : "default",
@@ -528,6 +530,12 @@ Examples:
             a.push("                           suppressed.  The value 'quiet' eliminates terminal");
             a.push("                           logging and the value 'log' forces it to appear.");
             a.push("                 Accepted values: quiet, log, empty string");
+            a.push("");
+            a.push("* externalParser - string - Runs a third party application against template");
+            a.push("                           code. This will execute a command line instruction as");
+            a.push("                           Node child process. The text 'prettydiffinput' must");
+            a.push("                           be present where code input should occur in the");
+            a.push("                           command.");
             a.push("");
             a.push("* force_attribute - boolean - If all markup attributes should be indented each");
             a.push("                           onto their own line.  Default is false.");
@@ -1575,6 +1583,8 @@ Examples:
                     } else if (d[b][1] === "log") {
                         options.endquietly = "log";
                     }
+                } else if (d[b][0] === "externalParser") {
+                    options.externalParser = d[b][1];
                 } else if (d[b][0] === "force_attribute" && d[b][1] === "true") {
                     options.force_attribute = true;
                 } else if (d[b][0] === "force_indent" && d[b][1] === "true") {
